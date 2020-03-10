@@ -12,14 +12,15 @@ class ViewController: UITableViewController {
     
     var albums : [Album] = []
     let albumCellName = "albumCell"
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         view.backgroundColor = .white
         setTableView()
         setAlbums()
     }
-    
+    // MARK: - Set up
     func setAlbums() {
         FetchController().fetchAlbums { (albums) in
             self.albums = albums
@@ -34,7 +35,7 @@ class ViewController: UITableViewController {
         tableView.register(AlbumCell.self, forCellReuseIdentifier: albumCellName)
     }
     
-    
+    // MARK: - TableView Functions
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return albums.count
     }
@@ -44,10 +45,15 @@ class ViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: albumCellName, for: indexPath) as? AlbumCell
             else {print("❇️♊️>>>\(#file) \(#line): guard let failed<<<"); return UITableViewCell()}
         cell.album = albums[indexPath.row]
-        
-        
         return cell
     }
-
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let album = albums[indexPath.row]
+        self.navigationController?.pushViewController(AlbumDetailViewController(album: album), animated: true)
+    }
+    
+    
 }
 

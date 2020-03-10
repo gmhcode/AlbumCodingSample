@@ -16,15 +16,22 @@ class AlbumCell: UITableViewCell {
         }
     }
     
-    var vi = UIImageView()
-    var vt = UILabel()
+    var albumCoverImageView = UIImageView()
+    var artistNameLabel = UILabel()
+    var albumNameLabel = UILabel()
+    
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(vi)
-        addSubview(vt)
+        addSubview(albumCoverImageView)
+        addSubview(artistNameLabel)
+        addSubview(albumNameLabel)
+        configureImageView()
+        configureArtistNameLabel()
+        configureAlbumNameLabel()
         setImageConstraints()
-        setTitleLabelConstraints()
+        setArtistNameLabelConstraints()
+        setAlbumNameLabelConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -34,11 +41,11 @@ class AlbumCell: UITableViewCell {
     
     func setViews() {
         guard let album = album else {print("❇️♊️>>>\(#file) \(#line): guard let failed<<<"); return}
-
-        FetchController.shared.fetchAlbumCover(url: album.artworkUrl100) { (image) in
+        FetchController.shared.retrieveImageFromCache(album: album) { (image) in
             DispatchQueue.main.async {
-                self.vi.image = image
-                self.vt.text = album.artistName
+                self.albumCoverImageView.image = image
+                self.artistNameLabel.text = "Artist: " + album.artistName
+                self.albumNameLabel.text = "Album: " + album.name
             }
         }
     }
@@ -46,30 +53,44 @@ class AlbumCell: UITableViewCell {
     
     
     func configureImageView() {
-        vi.layer.cornerRadius = 10
-        vi.clipsToBounds = true
+        albumCoverImageView.layer.cornerRadius = 10
+        albumCoverImageView.clipsToBounds = true
     }
     
-    func configureTitleLabel() {
-        vt.numberOfLines = 0
-        vt.adjustsFontSizeToFitWidth = true
+    
+    func configureArtistNameLabel() {
+        artistNameLabel.numberOfLines = 0
+        artistNameLabel.adjustsFontSizeToFitWidth = true
     }
+    func configureAlbumNameLabel(){
+        albumNameLabel.numberOfLines = 0
+        albumNameLabel.adjustsFontSizeToFitWidth = true
+    }
+    
     
     func setImageConstraints() {
-        vi.translatesAutoresizingMaskIntoConstraints = false
-        vi.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        vi.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12).isActive = true
-        vi.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        vi.widthAnchor.constraint(equalTo: vi.heightAnchor).isActive = true
+        albumCoverImageView.translatesAutoresizingMaskIntoConstraints = false
+        albumCoverImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        albumCoverImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12).isActive = true
+        albumCoverImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
+        albumCoverImageView.widthAnchor.constraint(equalTo: albumCoverImageView.heightAnchor).isActive = true
         
     }
     
-    func setTitleLabelConstraints() {
-        vt.translatesAutoresizingMaskIntoConstraints = false
-        vt.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
-        vt.leadingAnchor.constraint(equalTo: vi.trailingAnchor, constant: 20).isActive = true
-        vt.heightAnchor.constraint(equalToConstant: 80).isActive = true
-        vt.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
+    func setAlbumNameLabelConstraints() {
+        albumNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        albumNameLabel.leadingAnchor.constraint(equalTo: albumCoverImageView.trailingAnchor, constant: 20).isActive = true
+        albumNameLabel.topAnchor.constraint(equalTo: artistNameLabel.bottomAnchor, constant: 5).isActive = true
+        albumNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
+        
+        
+    }
+    
+    func setArtistNameLabelConstraints() {
+        artistNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        artistNameLabel.leadingAnchor.constraint(equalTo: albumCoverImageView.trailingAnchor, constant: 20).isActive = true
+        artistNameLabel.topAnchor.constraint(equalTo: albumCoverImageView.topAnchor, constant: 15).isActive = true
+        artistNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
     }
 
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90481BC6241848D5004AFE8A /* AlbumDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90481BC5241848D5004AFE8A /* AlbumDetailViewController.swift */; };
 		905C61392418079F005CB78E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905C61382418079F005CB78E /* AppDelegate.swift */; };
 		905C613B2418079F005CB78E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905C613A2418079F005CB78E /* SceneDelegate.swift */; };
 		905C613D2418079F005CB78E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905C613C2418079F005CB78E /* ViewController.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		90481BC5241848D5004AFE8A /* AlbumDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailViewController.swift; sourceTree = "<group>"; };
 		905C61352418079F005CB78E /* NikeCodingSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NikeCodingSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		905C61382418079F005CB78E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		905C613A2418079F005CB78E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				905C61652418213A005CB78E /* Views */,
 				905C613C2418079F005CB78E /* ViewController.swift */,
+				90481BC5241848D5004AFE8A /* AlbumDetailViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -253,6 +256,7 @@
 				905C616324180D30005CB78E /* FetchController.swift in Sources */,
 				905C61672418215C005CB78E /* AlbumCell.swift in Sources */,
 				905C61392418079F005CB78E /* AppDelegate.swift in Sources */,
+				90481BC6241848D5004AFE8A /* AlbumDetailViewController.swift in Sources */,
 				905C613B2418079F005CB78E /* SceneDelegate.swift in Sources */,
 				905C616024180C2B005CB78E /* Album.swift in Sources */,
 			);

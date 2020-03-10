@@ -41,16 +41,34 @@ class FetchController {
         }.resume()
     }
     
-    func fetchAlbumCover(url: URL, completion:@escaping(UIImage) -> Void) {
+    ///Fetches the Album Cover Image from the URL parameter, then completed with an image. So far this is only used in the retrieveImageFromCache function.
+    private func fetchAlbumCover(url: URL, completion:@escaping(UIImage?) -> Void) {
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             if let error = error {
                 print("❌ There was an error in \(#function) \(error) : \(error.localizedDescription) : \(#file) \(#line)")
-                completion(UIImage())
+                completion(nil)
                 return
             }
-            guard let data = data, let image = UIImage(data: data) else {print("❇️♊️>>>\(#file) \(#line): guard let failed<<<");completion(UIImage()); return}
+            guard let data = data, let image = UIImage(data: data) else {print("❇️♊️>>>\(#file) \(#line): guard let failed<<<");completion(nil); return}
             completion(image)
         }.resume()
+    }
+    
+   
+    ///Checks to see if the image is cached. If it is, that image is returned, if not, we fetch the Image and put it in the cache
+    func retrieveImageFromCache(album: Album, completion: @escaping (UIImage?)->Void) {
+        
+        if let cachedImage = imageCache.object(forKey: album.artworkUrl100.absoluteString as NSString) {
+            completion(cachedImage)
+            
+        } else {
+            fetchAlbumCover(url: album.artworkUrl100) { (image) in
+                guard let image = image else {print("❇️♊️>>>\(#file) \(#line): guard let failed<<<");completion(nil); return}
+
+                self.imageCache.setObject(image, forKey: album.artworkUrl100.absoluteString as NSString)
+                completion(image)
+            }
+        }
     }
 }

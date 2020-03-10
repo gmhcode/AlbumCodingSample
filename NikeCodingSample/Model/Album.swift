@@ -18,7 +18,14 @@ struct Feed : Codable {
 
 struct Album : Codable {
     let artistName : String
+    let releaseDate: String
     let name: String
+    let copyright : String
     let artworkUrl100 : URL
+    let genres : [Genre]
     
+}
+
+struct Genre: Codable {
+    let name : String
 }
