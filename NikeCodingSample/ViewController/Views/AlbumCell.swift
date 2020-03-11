@@ -27,8 +27,6 @@ class AlbumCell: UITableViewCell {
         addSubview(artistNameLabel)
         addSubview(albumNameLabel)
         configureImageView()
-        configureArtistNameLabel()
-        configureAlbumNameLabel()
         setImageConstraints()
         setArtistNameLabelConstraints()
         setAlbumNameLabelConstraints()
@@ -47,8 +45,14 @@ class AlbumCell: UITableViewCell {
                 self.albumCoverImageView.image = image
             }
         }
-        self.artistNameLabel.text = "Artist: " + album.artistName
-        self.albumNameLabel.text = "Album: " + album.name
+        artistNameLabel.text = "Artist: " + album.artistName
+        artistNameLabel.textColor = #colorLiteral(red: 0.9380758405, green: 0.9380758405, blue: 0.9380758405, alpha: 1)
+        artistNameLabel.numberOfLines = 0
+        
+        albumNameLabel.text = "Album: " + album.name
+        albumNameLabel.textColor = #colorLiteral(red: 0.9380758405, green: 0.9380758405, blue: 0.9380758405, alpha: 1)
+        albumNameLabel.numberOfLines = 0
+        
         layer.cornerRadius = 10
         layer.borderWidth = 1
         layer.borderColor = #colorLiteral(red: 0.1607642472, green: 0.1607983708, blue: 0.1607597768, alpha: 1)
@@ -63,14 +67,6 @@ class AlbumCell: UITableViewCell {
     }
     
     
-    func configureArtistNameLabel() {
-        artistNameLabel.numberOfLines = 0
-//        artistNameLabel.adjustsFontSizeToFitWidth = true
-    }
-    func configureAlbumNameLabel(){
-        albumNameLabel.numberOfLines = 0
-//        albumNameLabel.adjustsFontSizeToFitWidth = true
-    }
     
     
     func setImageConstraints() {

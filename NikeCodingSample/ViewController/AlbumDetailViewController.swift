@@ -44,10 +44,63 @@ class AlbumDetailViewController: UIViewController {
         setupViewData()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+
+    
+    
+    
+    func setupViewData() {
+        FetchController.shared.retrieveImageFromCache(album: album) { (image) in
+            DispatchQueue.main.async {
+                self.albumCoverImageView.image = image
+                self.albumCoverImageView.layer.borderWidth = 2
+                self.albumCoverImageView.layer.borderColor = #colorLiteral(red: 0.1575104892, green: 0.1575104892, blue: 0.1575104892, alpha: 1)
+            }
+        }
+        
+        
+        artistNameLabel.text = "Artist: " + album.artistName
+        artistNameLabel.textColor = #colorLiteral(red: 0.1607642472, green: 0.1607983708, blue: 0.1607597768, alpha: 1)
+        artistNameLabel.font = artistNameLabel.font.withSize(14)
+        
+        
+        albumNameLabel.text = "Album: " + album.name
+        albumNameLabel.textColor = #colorLiteral(red: 0.1607642472, green: 0.1607983708, blue: 0.1607597768, alpha: 1)
+        albumNameLabel.font = albumNameLabel.font.withSize(14)
+        
+        
+        genreLabel.text = "Genres: " + String(album.genres.map({$0.name + ", "}).joined().dropLast(2))
+        genreLabel.textColor = #colorLiteral(red: 0.1607642472, green: 0.1607983708, blue: 0.1607597768, alpha: 1)
+        genreLabel.font = genreLabel.font.withSize(14)
+        
+        
+        releaseDateLabel.text = "Release Date: " + album.releaseDate
+        releaseDateLabel.textColor = #colorLiteral(red: 0.1607642472, green: 0.1607983708, blue: 0.1607597768, alpha: 1)
+        releaseDateLabel.font = releaseDateLabel.font.withSize(14)
+        
+        
+        copyrightLabel.text = "Copyright: " + album.copyright
+        copyrightLabel.textColor = #colorLiteral(red: 0.1607642472, green: 0.1607983708, blue: 0.1607597768, alpha: 1)
+        copyrightLabel.font = copyrightLabel.font.withSize(14)
+        
+        
+        iTunesPageButton.setTitle("iTunes Page", for: .normal)
+        iTunesPageButton.titleLabel?.textColor = #colorLiteral(red: 0.1607642472, green: 0.1607983708, blue: 0.1607597768, alpha: 1)
+        iTunesPageButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        iTunesPageButton.layer.cornerRadius = 10
+        iTunesPageButton.layer.borderWidth = 2
+        iTunesPageButton.layer.borderColor = #colorLiteral(red: 0.1575104892, green: 0.1575104892, blue: 0.1575104892, alpha: 1)
+        
+        iTunesPageButton.addTarget(self, action: #selector(openInItunes), for: .allTouchEvents)
         
     }
+    
+    @objc func openInItunes() {
+        UIApplication.shared.open(album.url, options: [:], completionHandler: nil)
+    }
+}
+
+//Constraints
+extension AlbumDetailViewController {
     
     func setAlbumImage() {
         
@@ -126,43 +179,7 @@ class AlbumDetailViewController: UIViewController {
     
     
     
-    func setupViewData() {
-        FetchController.shared.retrieveImageFromCache(album: album) { (image) in
-            DispatchQueue.main.async {
-                self.albumCoverImageView.image = image
-                self.albumCoverImageView.layer.borderWidth = 2
-                self.albumCoverImageView.layer.borderColor = #colorLiteral(red: 0.1575104892, green: 0.1575104892, blue: 0.1575104892, alpha: 1)
-            }
-        }
-        
-        
-        artistNameLabel.text = "Artist: " + album.artistName
-        artistNameLabel.font = artistNameLabel.font.withSize(14)
-        
-        
-        albumNameLabel.text = "Album: " + album.name
-        albumNameLabel.font = albumNameLabel.font.withSize(14)
-        
-        
-        genreLabel.text = "Genres: " + String(album.genres.map({$0.name + ", "}).joined().dropLast(2))
-        genreLabel.font = genreLabel.font.withSize(14)
-        
-        
-        releaseDateLabel.text = "Release Date: " + album.releaseDate
-        releaseDateLabel.font = releaseDateLabel.font.withSize(14)
-        
-        
-        copyrightLabel.text = "Copyright: " + album.copyright
-        copyrightLabel.font = copyrightLabel.font.withSize(14)
-        
-        
-        iTunesPageButton.setTitle("iTunes Page", for: .normal)
-        iTunesPageButton.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        iTunesPageButton.layer.cornerRadius = 10
-        iTunesPageButton.layer.borderWidth = 2
-        iTunesPageButton.layer.borderColor = #colorLiteral(red: 0.1575104892, green: 0.1575104892, blue: 0.1575104892, alpha: 1)
-        
-        
-    }
+    
+    
+    
 }
-
