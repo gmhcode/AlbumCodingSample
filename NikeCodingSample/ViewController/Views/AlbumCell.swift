@@ -32,6 +32,7 @@ class AlbumCell: UITableViewCell {
         setImageConstraints()
         setArtistNameLabelConstraints()
         setAlbumNameLabelConstraints()
+
     }
     
     required init?(coder: NSCoder) {
@@ -44,10 +45,14 @@ class AlbumCell: UITableViewCell {
         FetchController.shared.retrieveImageFromCache(album: album) { (image) in
             DispatchQueue.main.async {
                 self.albumCoverImageView.image = image
-                self.artistNameLabel.text = "Artist: " + album.artistName
-                self.albumNameLabel.text = "Album: " + album.name
             }
         }
+        self.artistNameLabel.text = "Artist: " + album.artistName
+        self.albumNameLabel.text = "Album: " + album.name
+        layer.cornerRadius = 10
+        layer.borderWidth = 1
+        layer.borderColor = #colorLiteral(red: 0.1607642472, green: 0.1607983708, blue: 0.1607597768, alpha: 1)
+        backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
     }
     
     
@@ -60,17 +65,17 @@ class AlbumCell: UITableViewCell {
     
     func configureArtistNameLabel() {
         artistNameLabel.numberOfLines = 0
-        artistNameLabel.adjustsFontSizeToFitWidth = true
+//        artistNameLabel.adjustsFontSizeToFitWidth = true
     }
     func configureAlbumNameLabel(){
         albumNameLabel.numberOfLines = 0
-        albumNameLabel.adjustsFontSizeToFitWidth = true
+//        albumNameLabel.adjustsFontSizeToFitWidth = true
     }
     
     
     func setImageConstraints() {
         albumCoverImageView.translatesAutoresizingMaskIntoConstraints = false
-        albumCoverImageView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        albumCoverImageView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
         albumCoverImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12).isActive = true
         albumCoverImageView.heightAnchor.constraint(equalToConstant: 80).isActive = true
         albumCoverImageView.widthAnchor.constraint(equalTo: albumCoverImageView.heightAnchor).isActive = true
@@ -80,9 +85,9 @@ class AlbumCell: UITableViewCell {
     func setAlbumNameLabelConstraints() {
         albumNameLabel.translatesAutoresizingMaskIntoConstraints = false
         albumNameLabel.leadingAnchor.constraint(equalTo: albumCoverImageView.trailingAnchor, constant: 20).isActive = true
-        albumNameLabel.topAnchor.constraint(equalTo: artistNameLabel.bottomAnchor, constant: 5).isActive = true
+        albumNameLabel.topAnchor.constraint(equalTo: artistNameLabel.bottomAnchor, constant: 10).isActive = true
         albumNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
-        
+        bottomAnchor.constraint(greaterThanOrEqualTo: albumNameLabel.bottomAnchor, constant: 25).isActive = true
         
     }
     

@@ -17,8 +17,10 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        setTableView()
+        
         setAlbums()
+        setTableView()
+        
     }
     // MARK: - Set up
     func setAlbums() {
@@ -31,7 +33,10 @@ class ViewController: UITableViewController {
     }
     
     func setTableView() {
-        tableView.rowHeight = 100
+        tableView.estimatedRowHeight = 100
+        tableView.rowHeight =
+            UITableView.automaticDimension
+        tableView.backgroundColor = .white
         tableView.register(AlbumCell.self, forCellReuseIdentifier: albumCellName)
     }
     
@@ -48,10 +53,11 @@ class ViewController: UITableViewController {
         return cell
     }
     
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let album = albums[indexPath.row]
-        self.navigationController?.pushViewController(AlbumDetailViewController(album: album), animated: true)
+        
+        let albumVC = AlbumDetailViewController(album: album)
+        self.navigationController?.pushViewController(albumVC, animated: true)
     }
     
     
