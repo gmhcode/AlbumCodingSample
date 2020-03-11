@@ -58,10 +58,10 @@ class FetchController {
    
     ///Checks to see if the image is cached. If it is, that image is returned, if not, we fetch the Image and put it in the cache
     func retrieveImageFromCache(album: Album, completion: @escaping (UIImage?)->Void) {
-        
+        //Checks to see if the image exists in the cache
         if let cachedImage = imageCache.object(forKey: album.artworkUrl100.absoluteString as NSString) {
             completion(cachedImage)
-            
+            //If it doesnt exists in the cache, fetch the image
         } else {
             fetchAlbumCover(url: album.artworkUrl100) { (image) in
                 guard let image = image else {print("❇️♊️>>>\(#file) \(#line): guard let failed<<<");completion(nil); return}

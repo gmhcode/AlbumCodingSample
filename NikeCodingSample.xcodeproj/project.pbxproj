@@ -14,7 +14,6 @@
 		905C6142241807A1005CB78E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 905C6141241807A1005CB78E /* Assets.xcassets */; };
 		905C6145241807A1005CB78E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 905C6143241807A1005CB78E /* LaunchScreen.storyboard */; };
 		905C6150241807A1005CB78E /* NikeCodingSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905C614F241807A1005CB78E /* NikeCodingSampleTests.swift */; };
-		905C615C24180B23005CB78E /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905C615B24180B23005CB78E /* UIView.swift */; };
 		905C616024180C2B005CB78E /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905C615F24180C2B005CB78E /* Album.swift */; };
 		905C616324180D30005CB78E /* FetchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905C616224180D30005CB78E /* FetchController.swift */; };
 		905C61672418215C005CB78E /* AlbumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 905C61662418215C005CB78E /* AlbumCell.swift */; };
@@ -42,7 +41,6 @@
 		905C614B241807A1005CB78E /* NikeCodingSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NikeCodingSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		905C614F241807A1005CB78E /* NikeCodingSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NikeCodingSampleTests.swift; sourceTree = "<group>"; };
 		905C6151241807A1005CB78E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		905C615B24180B23005CB78E /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		905C615F24180C2B005CB78E /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		905C616224180D30005CB78E /* FetchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchController.swift; sourceTree = "<group>"; };
 		905C61662418215C005CB78E /* AlbumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCell.swift; sourceTree = "<group>"; };
@@ -90,11 +88,7 @@
 				905C616424182117005CB78E /* ViewController */,
 				905C616124180D09005CB78E /* ModelController */,
 				905C615D24180C0E005CB78E /* Model */,
-				905C615A24180B05005CB78E /* Extensions */,
-				905C61382418079F005CB78E /* AppDelegate.swift */,
-				905C613A2418079F005CB78E /* SceneDelegate.swift */,
-				905C6141241807A1005CB78E /* Assets.xcassets */,
-				905C6143241807A1005CB78E /* LaunchScreen.storyboard */,
+				90DD02AA24187E66006C3AF3 /* Resources */,
 				905C6146241807A1005CB78E /* Info.plist */,
 			);
 			path = NikeCodingSample;
@@ -107,14 +101,6 @@
 				905C6151241807A1005CB78E /* Info.plist */,
 			);
 			path = NikeCodingSampleTests;
-			sourceTree = "<group>";
-		};
-		905C615A24180B05005CB78E /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				905C615B24180B23005CB78E /* UIView.swift */,
-			);
-			path = Extensions;
 			sourceTree = "<group>";
 		};
 		905C615D24180C0E005CB78E /* Model */ = {
@@ -149,6 +135,17 @@
 				905C61662418215C005CB78E /* AlbumCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		90DD02AA24187E66006C3AF3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				905C61382418079F005CB78E /* AppDelegate.swift */,
+				905C613A2418079F005CB78E /* SceneDelegate.swift */,
+				905C6141241807A1005CB78E /* Assets.xcassets */,
+				905C6143241807A1005CB78E /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,7 +248,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				905C615C24180B23005CB78E /* UIView.swift in Sources */,
 				905C613D2418079F005CB78E /* ViewController.swift in Sources */,
 				905C616324180D30005CB78E /* FetchController.swift in Sources */,
 				905C61672418215C005CB78E /* AlbumCell.swift in Sources */,

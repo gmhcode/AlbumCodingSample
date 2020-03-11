@@ -53,7 +53,8 @@ class AlbumCell: UITableViewCell {
         layer.cornerRadius = 10
         layer.borderWidth = 1
         layer.borderColor = #colorLiteral(red: 0.1607642472, green: 0.1607983708, blue: 0.1607597768, alpha: 1)
-        backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        
+        self.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
     }
     
     
@@ -63,9 +64,10 @@ class AlbumCell: UITableViewCell {
         albumCoverImageView.clipsToBounds = true
     }
     
+}
+// MARK: - Cell Contraints
+extension AlbumCell {
     
-    
-    // MARK: - Cell Contraints
     func setImageConstraints() {
         addSubview(albumCoverImageView)
         albumCoverImageView.translatesAutoresizingMaskIntoConstraints = false
@@ -92,7 +94,4 @@ class AlbumCell: UITableViewCell {
         albumNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
         bottomAnchor.constraint(greaterThanOrEqualTo: albumNameLabel.bottomAnchor, constant: 25).isActive = true
     }
-    
-    
-
 }

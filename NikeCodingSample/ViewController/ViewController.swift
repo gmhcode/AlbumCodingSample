@@ -51,13 +51,12 @@ class ViewController: UITableViewController {
         cell.album = albums[indexPath.row]
         return cell
     }
-    ///Pushed to the AlbumDetailViewController
+    
+    ///Pushes to the AlbumDetailViewController
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let album = albums[indexPath.row]
         let albumVC = AlbumDetailViewController(album: album)
         self.navigationController?.pushViewController(albumVC, animated: true)
     }
-    
-    
 }
 
