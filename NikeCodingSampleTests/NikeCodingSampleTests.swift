@@ -18,17 +18,29 @@ class NikeCodingSampleTests: XCTestCase {
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    ///Makes sure the url returns the top 100 albums
+    func testFetchAlbums() {
+        FetchController.shared.fetchAlbums { (albums) in
+            XCTAssertTrue(albums.count == 100)
+        }
+       
     }
-
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    ///Tests to make sure the image cache populates correctly
+    func testRetrieveImageFromCache(){
+        var testBool = true
+        FetchController.shared.fetchAlbums { (albums) in
+            for (index,album) in albums.enumerated() {
+                FetchController.shared.retrieveImageFromCache(album: album) { (image) in
+                   let object = FetchController.shared.imageCache.object(forKey: album.artworkUrl100.absoluteString as NSString)
+                    if object == nil {
+                        testBool = false
+                        XCTAssertTrue(testBool)
+                    }
+                    if index == albums.count - 1 {
+                        XCTAssertTrue(testBool)
+                    }
+                }
+            }
         }
     }
-
 }

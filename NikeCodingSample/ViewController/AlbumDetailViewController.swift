@@ -20,11 +20,11 @@ class AlbumDetailViewController: UIViewController {
     var copyrightLabel = UILabel()
     var iTunesPageButton = UIButton()
     
+    ///Set all the constraints in the init, initializations requires an album
     init(album: Album) {
         self.album = album
         super.init(nibName: nil, bundle: nil)
         view.backgroundColor = #colorLiteral(red: 0.8345568776, green: 0.8345568776, blue: 0.8345568776, alpha: 1)
-        
         setAlbumImage()
         setArtistNameLabelConstraints()
         setAlbumNameLabelConstraints()
@@ -47,7 +47,7 @@ class AlbumDetailViewController: UIViewController {
 
     
     
-    
+    // MARK: - Setup View Data
     func setupViewData() {
         FetchController.shared.retrieveImageFromCache(album: album) { (image) in
             DispatchQueue.main.async {
@@ -99,7 +99,7 @@ class AlbumDetailViewController: UIViewController {
     }
 }
 
-//Constraints
+// MARK: - Constraints
 extension AlbumDetailViewController {
     
     func setAlbumImage() {
@@ -117,7 +117,6 @@ extension AlbumDetailViewController {
         self.view.addSubview(artistNameLabel)
         artistNameLabel.numberOfLines = 0
         artistNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        //        artistNameLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 1.1).isActive = true
         artistNameLabel.widthAnchor.constraint(equalTo: albumCoverImageView.widthAnchor).isActive = true
         artistNameLabel.centerXAnchor.constraint(equalTo: albumCoverImageView.centerXAnchor).isActive = true
         artistNameLabel.topAnchor.constraint(equalTo: albumCoverImageView.bottomAnchor, constant: 20).isActive = true
@@ -176,10 +175,4 @@ extension AlbumDetailViewController {
         iTunesPageButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
     }
-    
-    
-    
-    
-    
-    
 }

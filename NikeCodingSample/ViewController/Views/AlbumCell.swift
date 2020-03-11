@@ -12,7 +12,7 @@ class AlbumCell: UITableViewCell {
     
     var album : Album? {
         didSet{
-            setViews()
+            setupViewData()
         }
     }
     
@@ -23,9 +23,6 @@ class AlbumCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        addSubview(albumCoverImageView)
-        addSubview(artistNameLabel)
-        addSubview(albumNameLabel)
         configureImageView()
         setImageConstraints()
         setArtistNameLabelConstraints()
@@ -38,7 +35,7 @@ class AlbumCell: UITableViewCell {
     }
     
     
-    func setViews() {
+    func setupViewData() {
         guard let album = album else {print("❇️♊️>>>\(#file) \(#line): guard let failed<<<"); return}
         FetchController.shared.retrieveImageFromCache(album: album) { (image) in
             DispatchQueue.main.async {
@@ -68,8 +65,9 @@ class AlbumCell: UITableViewCell {
     
     
     
-    
+    // MARK: - Cell Contraints
     func setImageConstraints() {
+        addSubview(albumCoverImageView)
         albumCoverImageView.translatesAutoresizingMaskIntoConstraints = false
         albumCoverImageView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
         albumCoverImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12).isActive = true
@@ -78,20 +76,23 @@ class AlbumCell: UITableViewCell {
         
     }
     
-    func setAlbumNameLabelConstraints() {
-        albumNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        albumNameLabel.leadingAnchor.constraint(equalTo: albumCoverImageView.trailingAnchor, constant: 20).isActive = true
-        albumNameLabel.topAnchor.constraint(equalTo: artistNameLabel.bottomAnchor, constant: 10).isActive = true
-        albumNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
-        bottomAnchor.constraint(greaterThanOrEqualTo: albumNameLabel.bottomAnchor, constant: 25).isActive = true
-        
-    }
-    
     func setArtistNameLabelConstraints() {
+        addSubview(artistNameLabel)
         artistNameLabel.translatesAutoresizingMaskIntoConstraints = false
         artistNameLabel.leadingAnchor.constraint(equalTo: albumCoverImageView.trailingAnchor, constant: 20).isActive = true
         artistNameLabel.topAnchor.constraint(equalTo: albumCoverImageView.topAnchor, constant: 15).isActive = true
         artistNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
     }
+    
+    func setAlbumNameLabelConstraints() {
+        addSubview(albumNameLabel)
+        albumNameLabel.translatesAutoresizingMaskIntoConstraints = false
+        albumNameLabel.leadingAnchor.constraint(equalTo: albumCoverImageView.trailingAnchor, constant: 20).isActive = true
+        albumNameLabel.topAnchor.constraint(equalTo: artistNameLabel.bottomAnchor, constant: 10).isActive = true
+        albumNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
+        bottomAnchor.constraint(greaterThanOrEqualTo: albumNameLabel.bottomAnchor, constant: 25).isActive = true
+    }
+    
+    
 
 }
